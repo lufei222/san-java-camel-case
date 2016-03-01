@@ -17,10 +17,10 @@ import java.util.Scanner;
  */
 public class GenEntityMysql {
 
-    private String packageOutPath = "main/java/domain3";//指定实体生成所在包的路径
-    private String packageOutPath2 = "domain3";//指定import
+    private String packageOutPath = "main/java/domain2";//指定实体生成所在包的路径
+    private String packageOutPath2 = "domain";//指定import
     private String authorName = "san-pc";//作者名字
-    private String tablename = "staffs";//表名
+    private String tablename = "project";//表名
     private String[] colnames; // 列名数组
     private String[] colRemarks; //列名注释
     private String[] colTypes; //列名类型数组
@@ -32,7 +32,7 @@ public class GenEntityMysql {
     //数据库连接
     private static final String URL = "jdbc:mysql://localhost:3306/aitoubao";
     private static final String NAME = "root";
-    private static final String PASS = "root";
+    private static final String PASS = "123456";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     private boolean isCamelCase = true; // 是否驼峰命名法
     private static int sqlType; // 数据库类型
@@ -96,7 +96,7 @@ public class GenEntityMysql {
             while (resultSet.next()) {
                 String tableName = resultSet.getString("TABLE_NAME");
                 //System.out.println(tableName);
-                if (tableName.equals("staffs")) {
+                if (tableName.equals(tablename)) {
 
                     //ResultSet rs =getConnection.getMetaData().getColumns(null, getXMLConfig.getSchema(),tableName.toUpperCase(), "%");//其他数据库不需要这个方法的，直接传null，这个是oracle和db2这么用
                     ResultSet rs = dbmd.getColumns(null, "%", tableName, "%");
@@ -289,10 +289,10 @@ public class GenEntityMysql {
                     sb.append("\t**@GeneratedValue(strategy = GenerationType.AUTO)\r\n");
                     sb.append("\tpublic " + sqlType2JavaType(colTypes[i]) + " get" + initcap(colnames[i]) + "(){\r\n");*/
                     //注释部分
-                    sb.append("/**\r\n");
-                    sb.append(" * " + tablename + " get and set \r\n");
-                    sb.append(" * @" + this.authorName + "\r\n");
-                    sb.append(" */ \r\n");
+                    sb.append("\t/**\r\n");
+                    sb.append("\t * " + tablename + " ----------------------get and set---------------------- \r\n");
+                    sb.append("\t * @" + this.authorName + "\r\n");
+                    sb.append("\t */ \r\n");
                     sb.append("\tpublic " + sqlType2JavaType(colTypes[i]) + " get" + initcap(colnames[i]) + "(){\r\n");
                 } else {
                     sb.append("\tpublic " + sqlType2JavaType(colTypes[i]) + " get" + initcap(colnames[i]) + "(){\r\n");
