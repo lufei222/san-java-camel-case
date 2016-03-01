@@ -302,7 +302,7 @@ public class GenEntityMysql {
             }
             sb.append("\t\treturn " + nameRules(colnames[i]) + ";\r\n");
             sb.append("\t}\r\n\r\n");
-            sb.append("\tpublic void set" + initcap(colnames[i]) + "(" + sqlType2JavaType(colTypes[i]) + " " + colnames[i] + "){\r\n");
+            sb.append("\tpublic void set" + initcap(colnames[i]) + "(" + sqlType2JavaType(colTypes[i]) + " " + nameRules(colnames[i]) + "){\r\n");
             sb.append("\t\tthis." + nameRules(colnames[i]) + "=" + nameRules(colnames[i]) + ";\r\n");
             sb.append("\t}\r\n\r\n");
         }
