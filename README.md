@@ -1,2 +1,2 @@
 # sanProject
-new project for open source
+驼峰命名法mysql表转成javabean
